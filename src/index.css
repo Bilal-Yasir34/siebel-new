@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body text-dark bg-cream;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+
+  ::selection {
+    background: #B3CEDF;
+    color: #0D2137;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #EEF4FA;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1565C0;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0D3B6E;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-smooth focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn text-white hover:opacity-90 active:scale-[0.98];
+    background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 100%);
+    --tw-ring-color: #6B9EC5;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary-200 text-dark hover:bg-secondary-300 focus:ring-secondary-400;
+  }
+
+  .btn-outline {
+    @apply btn border-2 text-dark hover:text-white;
+    border-color: #1565C0;
+    --tw-ring-color: #1565C0;
+  }
+
+  .btn-outline:hover {
+    background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 100%);
+    border-color: #1565C0;
+  }
+
+  .btn-ghost {
+    @apply btn text-gray hover:text-dark hover:bg-secondary-100;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-card transition-all duration-300 hover:shadow-card-hover;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-secondary-300 bg-white text-dark placeholder:text-gray-light focus:outline-none focus:ring-2 transition-all duration-200;
+    --tw-ring-color: #1565C0;
+  }
+
+  .input:focus {
+    border-color: #1565C0;
+  }
+
+  .input-error {
+    @apply border-red-400 focus:ring-red-200 focus:border-red-400;
+  }
+
+  .label {
+    @apply block text-sm font-semibold text-gray-dark mb-2;
+  }
+
+  .link {
+    @apply transition-colors duration-200;
+    color: #1565C0;
+  }
+
+  .link:hover {
+    color: #0D3B6E;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  .badge-primary {
+    @apply badge;
+    background-color: #D5E8F5;
+    color: #0D3B6E;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  .badge-warning {
+    @apply badge;
+    background-color: #FEF3C7;
+    color: #92400E;
+  }
+
+  .badge-error {
+    @apply badge bg-red-100 text-red-700;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-16;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply font-heading text-heading-2 md:text-heading-1 text-dark text-center;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-gray text-center mt-2 max-w-2xl mx-auto;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 100%);
+  }
+
+  .gradient-soft {
+    background: linear-gradient(to bottom, #F7FAFD, #EEF4FA);
+  }
+
+  /* Product card styles */
+  .product-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300;
+  }
+
+  .product-card-image {
+    @apply aspect-square bg-secondary-100 overflow-hidden;
+  }
+
+  .product-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse bg-secondary-200 rounded;
+  }
+
+  /* Animated Add to Cart Button */
+  .animated-add-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: 2px solid transparent;
+    font-size: 14px;
+    background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 100%);
+    border-radius: 12px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-add-btn svg {
+    position: absolute;
+    width: 20px;
+    fill: white;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-add-btn .arr-1 {
+    right: 12px;
+  }
+
+  .animated-add-btn .arr-2 {
+    left: -25%;
+  }
+
+  .animated-add-btn .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-add-btn .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-8px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-add-btn:hover {
+    border-radius: 8px;
+    color: #0D2137;
+  }
+
+  .animated-add-btn:hover .arr-1 {
+    right: -25%;
+  }
+
+  .animated-add-btn:hover .arr-2 {
+    left: 12px;
+  }
+
+  .animated-add-btn:hover .text {
+    transform: translateX(8px);
+  }
+
+  .animated-add-btn:hover svg {
+    fill: #0D2137;
+  }
+
+  .animated-add-btn:active {
+    transform: scale(0.95);
+  }
+
+  .animated-add-btn:hover .circle {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+  }
+
+  .animated-add-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .animated-add-btn.disabled:hover .circle {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+
+  .animated-add-btn.disabled:hover {
+    color: white;
+    border-radius: 12px;
+  }
+
+  .animated-add-btn.disabled:hover .arr-1 {
+    right: 12px;
+  }
+
+  .animated-add-btn.disabled:hover .arr-2 {
+    left: -25%;
+  }
+
+  .animated-add-btn.disabled:hover .text {
+    transform: translateX(-8px);
+  }
+
+  .animated-add-btn.disabled:hover svg {
+    fill: white;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .backdrop-blur-light {
+    backdrop-filter: blur(8px);
+  }
+
+  .backdrop-blur-medium {
+    backdrop-filter: blur(16px);
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Scrolling announcement / ticker bar */
+  .animate-marquee {
+    animation: marquee 22s linear infinite;
+  }
+
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
