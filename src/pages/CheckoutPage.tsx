@@ -145,9 +145,11 @@ export function CheckoutPage() {
         .select()
         .single();
 
-      if (error) throw error;
+      if (error) {
+        console.error('Order INSERT error:', error.code, error.message, error.details, error.hint);
+        throw error;
+      }
 
-      // Insert order items
       if (order) {
         const orderItems = items.map((item) => ({
           order_id: order.id,
@@ -162,13 +164,16 @@ export function CheckoutPage() {
         }));
 
         const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
-        if (itemsError) throw itemsError;
+        if (itemsError) {
+          console.error('Order items INSERT error:', itemsError.code, itemsError.message, itemsError.details, itemsError.hint);
+          throw itemsError;
+        }
 
         clearCart();
         navigate(`/order-confirmation/${order.id}`);
       }
     } catch (error) {
-      console.error('Order error:', error);
+      console.error('Order placement failed:', error);
       toast.error('Failed to place order. Please try again.');
     } finally {
       setIsProcessing(false);
